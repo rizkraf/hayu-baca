@@ -12,7 +12,6 @@
               <b-nav-item href="#" class="mr-2 mt-1"><router-link to="/"><b-icon icon="house-door-fill"></b-icon><h6> Beranda</h6></router-link></b-nav-item>
               <b-nav-item href="#" class="mr-2 mt-1"><router-link to="/blogs"><b-icon icon="file-earmark-fill"></b-icon><h6> Blogs</h6></router-link></b-nav-item>
             </b-navbar-nav>
-
             <!-- Right aligned nav items -->
             <b-navbar-nav class="ml-auto">
               <b-nav-item-dropdown right>
@@ -47,6 +46,7 @@
   color: #2c3e50;
   height: 200vh;
 }
+
 #nav a {
   font-weight: bold;
   color: #2c3e50;

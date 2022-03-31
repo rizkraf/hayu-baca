@@ -20,7 +20,6 @@
         </tabel>
         <hr>
     </div>
-
 </template>
 
 <style>
@@ -37,9 +36,9 @@ hr {
 // Ini Display Blog Nya...
 // Tinggal Menyesuaikan Aja... :3.
 export default {
-    data: () => ({
-        apiDomain : 'https://demo-api-vue.sanbercloud.com'
-    }),
-    props : ['blog']
-}
+  data: () => ({
+    apiDomain: "https://demo-api-vue.sanbercloud.com",
+  }),
+  props: ["blog"],
+};
 </script>
