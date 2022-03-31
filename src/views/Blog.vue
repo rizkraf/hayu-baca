@@ -1,10 +1,30 @@
 <template>
-    <div v-if="blog.id">
-        <img :src="blog.photo ? apiDomain + blog.photo : 'https://picsum.photos/200/300'"><br>
-        Title : {{ blog.title }} <br>
-        Description : {{ blog.description }}<hr>
+    <div v-if="blog.id" class="contentBlog p-5">
+        <img :src="blog.photo ? apiDomain + blog.photo : 'https://picsum.photos/200/300'" class="rounded mb-3"><br>
+        <tabel>
+            <tr>
+                <td><h3>Judul</h3></td>
+                <td><h3>:</h3></td>
+                <td><h3>{{ blog.title }}</h3></td>
+            </tr>
+            <tr>
+                <td><h3>Deskripsi</h3></td>
+                <td><h3>:</h3></td>
+                <td><h3>{{ blog.description }}</h3></td>
+            </tr>
+            <tr>
+            </tr>
+        </tabel>
     </div>
 </template>
+
+<style>
+    img {
+        margin-bottom: 20px;
+        max-width: 350px;
+        max-height: 350px;
+    }
+</style>
 
 <script>
 // Disini Cuma Ambil Blog Yang Ingin Di Ambil...

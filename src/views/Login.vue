@@ -1,12 +1,32 @@
 <template>
     <div>
-        E-mail : <input v-model="email" type="email" required><br>
-        Password : <input v-model="password" :type="showpassword ? 'text' : 'password'"><br>
-        Show Password <input type="checkbox" v-model="showpassword"><br>
-        <button v-on:click="submit">Login</button><br>
-        Note : Usahakan Sehabis Klik Login... Balik Ke Home...
+    <table>
+        <tr>
+            <td><h5><b-icon icon="envelope"></b-icon> Email</h5></td>
+            <td><h5> : </h5></td>
+            <td><input v-model="email" type="email" required></td>
+        </tr>
+        <tr>
+            <td><h5><b-icon icon="file-lock"></b-icon> Kata Sandi</h5></td>
+            <td><h5> : </h5></td>
+            <td><input v-model="password" :type="showpassword ? 'text' : 'password'"></td>
+            <td>Lihat Kata Sandi</td>
+            <td><input type="checkbox" v-model="showpassword"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td><b-button pill variant="success" v-on:click="submit">Masuk <b-icon icon="arrow-right-circle"></b-icon></b-button></td>
+        </tr>
+    </table>
     </div>
 </template>
+
+<style>
+table {
+    margin: 25px auto;
+}
+</style>
 
 <script>
 import { mapActions } from 'vuex'

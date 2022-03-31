@@ -1,22 +1,21 @@
 <template>
   <div>
-    <h1>All Blogs</h1>
+    <P>Semua Artikel<b-icon icon="arrow-down-short"></b-icon></P>
+    <hr>
+    <display-blog v-for="blog in blogs" :key="`blog-` + blog.id" :blog="blog"></display-blog>
 
-    Ini Pagination. Nanti Ganti Aja. Buat Test Doang.<br>
-    Sekarang Di Page {{ page }}<br>
-    | <span v-for="n in lengthPage" :key="'page-'+n">
-      <button v-on:click="keHalaman(n)">{{ n }}</button> |
-    </span><br>
-    Paginationnya Berhenti Sampai Sini...<hr>
-
-    <display-blog
-    v-for="blog in blogs"
-    :key="`blog-` + blog.id"
-    :blog="blog"
-    ></display-blog>
-    
+    <div class="overflow-auto" v-for="n in lengthPage" :key="'page-' + n">
+      <b-pagination v-model="page" @input="go" :length="lengthPage" :total-visible="perPage" pills size="sm" v-on:click="keHalaman(n)">{{ n }}></b-pagination>
+    </div>    
   </div>
 </template>
+
+<style>
+.overflow-auto {
+  width: 140px;
+  margin: 0 auto;
+}
+</style>
 
 <script>
 import DisplayBlogVue from '../components/DisplayBlog.vue'
