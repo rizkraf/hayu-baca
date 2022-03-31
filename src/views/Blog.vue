@@ -1,20 +1,20 @@
 <template>
     <div v-if="blog.id" class="contentBlog p-5">
-        <img :src="blog.photo ? apiDomain + blog.photo : 'https://picsum.photos/200/300'" class="rounded"><br>
-        <tabel border="1">
+        <img :src="blog.photo ? apiDomain + blog.photo : 'https://picsum.photos/200/300'" class="rounded mb-3"><br>
+        <table>
             <tr>
-                <td><h3>Title</h3></td>
+                <td><h3>Judul</h3></td>
                 <td><h3>:</h3></td>
                 <td><h3>{{ blog.title }}</h3></td>
             </tr>
             <tr>
-                <td><h3>Description</h3></td>
+                <td><h3>Deskripsi</h3></td>
                 <td><h3>:</h3></td>
                 <td><h3>{{ blog.description }}</h3></td>
             </tr>
             <tr>
             </tr>
-        </tabel>
+        </table>
     </div>
 </template>
 
