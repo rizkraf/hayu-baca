@@ -7,6 +7,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import router from './router'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import store from './store'
 
 Vue.use(BootstrapVue)
 Vue.use(BootstrapVueIcons)
@@ -16,5 +17,7 @@ Vue.config.productionTip = false
 
 new Vue({
   router,
+  axios,
+  store,
   render: h => h(App)
 }).$mount('#app')
