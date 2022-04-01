@@ -5,7 +5,7 @@
     <display-blog v-for="blog in blogs" :key="`blog-` + blog.id" :blog="blog"></display-blog>
 
     <div class="d-flex justify-content-center">
-      <b-pagination v-model="page" @input="go" :total-rows="total" :per-page="PerPage" pills size="sm"></b-pagination>
+      <b-pagination v-model="page" @input="go" :total-rows="total" :per-page="perPage" pills size="sm"></b-pagination>
     </div>
   </div>
 </template>
