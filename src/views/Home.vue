@@ -1,12 +1,49 @@
 <template>
   <div class="home">
-    <display-blog
+    <div class="p-2 mb-5">
+      <h1>Selamat Membaca di <span>HayuBaca!</span></h1>
+      <h3><span>HayuBaca!</span> merupakan platform digital yang menampung para penjelajah internet untuk bertukar dan berbagi informasi menarik di dunia keuangan digital secara gratis!</h3><br>
+      <h5>Bergabunglah bersama kami untuk mendaptakan berita terpercaya dan terbaru.</h5>
+      <b-button pill variant="success" href="#signup.vue">Mendaftar <b-icon icon="arrow-right-circle"></b-icon></b-button>
+    </div>
+    <div>
+    <b-carousel
+      id="carousel-1"
+      v-model="slide"
+      :interval="4000"
+      controls
+      indicators
+      background="#ababab"
+      img-width="1024"
+      img-height="480"
+      style="text-shadow: 1px 1px 2px #333;"
+      @sliding-start="onSlideStart"
+      @sliding-end="onSlideEnd"
+    >
+      <b-carousel-slide
+        caption="First slide"
+        text="Nulla vitae elit libero, a pharetra augue mollis interdum."
+        img-src="https://picsum.photos/1024/480/?image=52"
+      >    <display-blog
     v-for="blog in blogs"
     :key="`blog-` + blog.id"
     :blog="blog"
-    ></display-blog>
+    ></display-blog></b-carousel-slide>
+    </b-carousel>
+  </div>
+
   </div>
 </template>
+
+<style>
+  span {
+    font-weight: 900;
+    text-shadow: 1px 1px 2px #333;
+  }
+  h3{
+    margin: 10px 250px;
+  }
+</style>
 
 <script>
 import DisplayBlogVue from '../components/DisplayBlog.vue'
