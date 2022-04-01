@@ -1,5 +1,4 @@
 <template>
-    <!-- Tinggal di styling -->
     <b-container>
         <!-- Nanti munculnya cuman ketika udah login doang -->
         <b-form @submit.prevent="submitForm()">
