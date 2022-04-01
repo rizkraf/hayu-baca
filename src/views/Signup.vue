@@ -49,6 +49,9 @@ table {
 .signupDiv {
   padding-bottom: 220px;
 }
+td {
+  text-align: left;
+}
 </style>
 
 <script>

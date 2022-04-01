@@ -9,7 +9,7 @@
             ref="title"
             :state="titleError"
             v-model="title"
-            placeholder="Isi Judul" 
+            placeholder="Masukan Judul ..." 
             :readonly="buttonStatus == 'upload'"
             id="judul"></b-form-input>
 
@@ -19,7 +19,7 @@
             v-model="description"
             ref="description"
             :state="descriptionError"
-            placeholder="Isi ini..."
+            placeholder="Masukan Deskripsi ..."
             rows="3"
             :readonly="buttonStatus == 'upload'"
             ></b-form-textarea>
@@ -47,25 +47,39 @@
 
         <br><br>
 
-        <table border=1>
+        <table border=1 class="tableArtikel">
             <tr v-for="blog of blogs" :key="`blog-` + blog.id">
                 <td>
                     <img width=100 :src="blog.photo ? domain + blog.photo : 'https://dummyimage.com/16:9x1080'" alt="">
                 </td>
                 <td>
-                    <b>Title : </b> {{ blog.title }} <br>
-                    <b>Description : </b> {{ blog.description }} <br>
+                    <b>Judul : </b> {{ blog.title }} <br>
+                    <b>Deskripsi : </b> {{ blog.description }} <br>
 
                 </td>
                 <td>
                     <button @click="editBlog(blog)">Edit</button>
                     <button @click="removeBlog(blog.id)">Hapus</button>
-                    <button @click="uploadPhoto(blog)">Upload Foto</button>
+                    <button @click="uploadPhoto(blog)">Unggah Foto</button>
                 </td>
             </tr>
         </table>
     </b-container>
 </template>
+
+<style>
+    .tableArtikel {
+        border-collapse: collapse;
+        border-spacing: 0;
+        width: 100%;
+        border: 1px solid #ddd;
+        box-shadow: 10px 10px;
+    }
+    td {
+        text-align: left;
+        padding: 8px;
+    }
+</style>
 
 <script>
 export default {
