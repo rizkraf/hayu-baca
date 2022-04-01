@@ -1,6 +1,6 @@
 <template>
     <div>
-      <img :src="blog.photo ? apiDomain + blog.photo : 'https://picsum.photos/200/300'" class="rounded mb-3"><br>
+      <img :src="blog.photo ? apiDomain + blog.photo : 'https://picsum.photos/200/300'" class="mb-3"><br>
       <tabel>
             <tr>
                 <td><h5>Judul</h5></td>
@@ -27,6 +27,9 @@
 img {
   max-width: 350px;
   max-height: 350px;
+border-radius: 60px;
+border-top-left-radius: 10px;
+border-bottom-right-radius: 10px;
 }
 hr {
     width: 350px;

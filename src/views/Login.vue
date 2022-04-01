@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="loginDiv">
     <table>
         <tr>
             <td><h5><b-icon icon="envelope"></b-icon> Email</h5></td>
@@ -10,8 +10,9 @@
             <td><h5><b-icon icon="file-lock"></b-icon> Kata Sandi</h5></td>
             <td><h5> : </h5></td>
             <td><input v-model="password" :type="showpassword ? 'text' : 'password'"></td>
-            <td>Lihat Kata Sandi</td>
+            <td></td>
             <td><input type="checkbox" v-model="showpassword"></td>
+            <td>Lihat Kata Sandi</td>
         </tr>
         <tr>
             <td></td>
@@ -25,6 +26,9 @@
 <style>
 table {
     margin: 25px auto;
+}
+.loginDiv {
+     padding-bottom: 220px;
 }
 </style>
 

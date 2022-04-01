@@ -45,7 +45,11 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  height: 200vh;
+  padding-Bottom: 50px;
+  background-image: url("./assets/background.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 #nav a {
   font-weight: bold;
@@ -57,9 +61,13 @@
 img {
   max-width: 350px;
   max-height: 350px;
+border-radius: 60px;
+border-top-left-radius: 10px;
+border-bottom-right-radius: 10px;
 }
 .title {
   font-weight: bold;
+text-shadow: 2px 2px 4px #333;
 }
 h6 {
   font-weight: bold;

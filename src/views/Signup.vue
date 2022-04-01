@@ -1,33 +1,41 @@
 <template>
-  <div>
+  <div class="signupDiv">
     <table>
       <tr>
-        <td><h5><b-icon icon="person"></b-icon> Nama</h5></td>
+        <td>
+          <h5><b-icon icon="person"></b-icon> Nama</h5>
+        </td>
         <td><h5>:</h5></td>
         <td><input v-model="name" type="text" /></td>
       </tr>
       <tr>
-        <td><h5><b-icon icon="envelope"></b-icon> Email</h5></td>
+        <td>
+          <h5><b-icon icon="envelope"></b-icon> Email</h5>
+        </td>
         <td><h5>:</h5></td>
         <td><input v-model="email" type="email" required /></td>
       </tr>
       <tr>
-        <td><h5><b-icon icon="file-lock"></b-icon> Kata Sandi</h5></td>
+        <td>
+          <h5><b-icon icon="file-lock"></b-icon> Kata Sandi</h5>
+        </td>
         <td><h5>:</h5></td>
         <td><input v-model="password" :type="showpassword ? 'text' : 'password'" /></td>
-        <td>Lihat Kata Sandi</td>
         <td><input type="checkbox" v-model="showpassword" /></td>
+        <td>Lihat Kata Sandi</td>
       </tr>
       <tr>
-        <td><h5><b-icon icon="person-bounding-box"></b-icon> Masukan Foto</h5></td>
-        <td><h5> : </h5></td>
+        <td>
+          <h5><b-icon icon="person-bounding-box"></b-icon> Masukan Foto</h5>
+        </td>
+        <td><h5>:</h5></td>
         <td><input type="file" name="photo" ref="photo" /></td>
       </tr>
       <tr>
-      <td></td>
-      <td></td>
+        <td></td>
+        <td></td>
         <td>
-            <b-button pill variant="success" v-on:click="register">Mendaftar <b-icon icon="check-square"></b-icon></b-button>
+          <b-button pill variant="success" v-on:click="register">Mendaftar <b-icon icon="check-square"></b-icon></b-button>
         </td>
       </tr>
     </table>
@@ -36,7 +44,10 @@
 
 <style>
 table {
-    margin: 25px auto;
+  margin: 25px auto;
+}
+.signupDiv {
+  padding-bottom: 220px;
 }
 </style>
 
