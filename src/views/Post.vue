@@ -2,6 +2,11 @@
     <b-container>
         <!-- Nanti munculnya cuman ketika udah login doang -->
         <b-form @submit.prevent="submitForm()">
+            <b-alert :show="dismissCountDown"
+            dismissible
+            fade
+            :variant="alertVariant"
+            @dismiss-count-down="countDownChanged">{{alertText}}</b-alert>
             <label for="judul">Judul</label>
             <b-form-input 
             name="title"
@@ -33,7 +38,7 @@
             </div>
 
             <div v-else-if="buttonStatus == 'upload'">
-                <b-form-file
+                <b-form-file class="mt-3"
                 name="photo" ref="photo"
                 placeholder="Choose a file or drop it here..."
                 drop-placeholder="Drop file here..."
@@ -91,7 +96,11 @@ export default {
         idEditBlog: null,
         idUploadBlog: null,
         titleError: null,
-        descriptionError: null
+        descriptionError: null,
+        dismissSecs: 5,
+        dismissCountDown: 0,
+        alertVariant: 'success',
+        alertText: 'Artikel telah berhasil diterbitkan'
     }),
 
     methods: {
@@ -102,11 +111,19 @@ export default {
                 this.$refs.title.focus()
             }
 
-            if (this.description.length > 30) {
+            if (this.description.length < 5) {
                 this.descriptionError = false
                 this.$refs.description.focus()
             }
         },
+
+        countDownChanged(dismissCountDown) {
+            this.dismissCountDown = dismissCountDown
+        },
+        showAlert() {
+            this.dismissCountDown = this.dismissSecs
+        },
+
         submitForm: function () {
 
             this.validationForm()
@@ -126,7 +143,8 @@ export default {
                     .then((response) => {
                         this.clearForm()
                         this.getBlogs()
-                        alert(response.data.message)
+                        this.showAlert()
+                        response.data.message
                     })
                     .catch((error) => {
                         console.log(error)
@@ -163,7 +181,10 @@ export default {
             this.axios(config)
                 .then((response) => {
                     this.getBlogs()
-                    alert(response.data.message)
+                    this.alertText = 'Artikel telah berhasil dihapus'
+                    this.alertVariant = 'danger'
+                    this.showAlert()
+                    response.data.message
                 })
                 .catch((error) => {
                     console.log(error)
@@ -191,7 +212,7 @@ export default {
 
             this.validationForm()
 
-            if (this.errors.length === 0) {
+            if (this.titleError === null && this.descriptionError === null) {
 
                 let formData = new FormData()
                 formData.append('title', this.title)
@@ -210,7 +231,9 @@ export default {
                     .then((response) => {
                         this.clearForm()
                         this.getBlogs()
-                        alert(response.data.message)
+                        this.alertText = 'Artikel telah berhasil diubah'
+                        this.showAlert()
+                        response.data.message
 
                     })
                     .catch((error) => {
@@ -245,14 +268,15 @@ export default {
                     this.clearForm()
 
                     this.getBlogs()
-
-                    alert(response.data.message)
+                    this.alertText = 'Foto telah berhasil ditambahkan'
+                    this.showAlert()
+                    response.data.message
 
                 })
                 .catch((error) => {
                     console.log(error)
                 })
-        }
+        },
     },
     created() {
         this.getBlogs()
