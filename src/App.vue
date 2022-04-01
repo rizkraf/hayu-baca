@@ -21,7 +21,7 @@
                 <b-nav-item href="#" class="mr-2 mt-1">
                   <router-link to="/blogs">
                     <b-icon icon="file-earmark-fill"></b-icon>
-                    <h6>Blogs</h6>
+                    <h6>Artikel</h6>
                   </router-link>
                 </b-nav-item>
               </b-navbar-nav>
