@@ -25,12 +25,12 @@
             ></b-form-textarea>
 
             <div v-if="buttonStatus == 'submit'">
-                <b-button type="submit" variant="success">Publish</b-button>
+                <b-button pill type="submit" variant="success" class="mt-3">Terbitkan</b-button>
             </div>
 
             <div v-else-if="buttonStatus == 'update'">
-                <b-button @click="updateBlog(idEditBlog)" variant="success">Button</b-button>
-                <b-button @click="clearForm" variant="danger">Button</b-button>
+                <b-button pill @click="updateBlog(idEditBlog)" variant="success" class="mt-3">Ubah</b-button>
+                <b-button pill @click="clearForm" variant="danger" class="mt-3 ml-3">Batal</b-button>
             </div>
 
             <div v-else-if="buttonStatus == 'upload'">
@@ -39,8 +39,8 @@
                 placeholder="Choose a file or drop it here..."
                 drop-placeholder="Drop file here..."
                 ></b-form-file>
-                <b-button @click="submitPhoto(idUploadBlog)" variant="success">Button</b-button>
-                <b-button @click="clearForm" variant="danger">Button</b-button>
+                <b-button pill @click="submitPhoto(idUploadBlog)" variant="success" class="mt-3">Unggah</b-button>
+                <b-button pill @click="clearForm" variant="danger" class="mt-3 ml-3">Batal</b-button>
             </div>
 
         </b-form>
@@ -57,10 +57,10 @@
                     <b>Deskripsi : </b> {{ blog.description }} <br>
 
                 </td>
-                <td>
-                    <button @click="editBlog(blog)">Edit</button>
-                    <button @click="removeBlog(blog.id)">Hapus</button>
-                    <button @click="uploadPhoto(blog)">Unggah Foto</button>
+                <td class="d-flex">
+                    <b-button pill class="ml-1 mt-1" variant="outline-info" @click="editBlog(blog)">Ubah</b-button>
+                    <b-button pill class="ml-1 mt-1" variant="outline-danger" @click="removeBlog(blog.id)">Hapus</b-button>
+                    <b-button pill class="ml-1 mt-1" variant="outline-secondary" @click="uploadPhoto(blog)">Unggah Foto</b-button>
                 </td>
             </tr>
         </table>
