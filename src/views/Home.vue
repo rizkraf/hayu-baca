@@ -5,9 +5,11 @@
       <h3><span>HayuBaca!</span> merupakan platform digital yang menampung para penjelajah internet untuk bertukar dan
         berbagi informasi menarik seputar dunia secara gratis!</h3><br>
       <div>
-        <h5>Bergabunglah bersama kami untuk mendaptakan berita terpercaya dan terbaru.</h5>
-        <b-button v-if="guest" pill variant="success" to="/signup">Daftar <b-icon icon="arrow-right-circle"></b-icon>
+        <div>
+          <h5>Bergabunglah bersama kami untuk mendaptakan berita terpercaya dan terbaru.</h5>
+        <b-button pill variant="success" to="/signup">Daftar <b-icon icon="arrow-right-circle"></b-icon>
         </b-button>
+        </div>
       </div>
     </div>
     <b-row class="d-flex justify-content-center">
@@ -49,7 +51,6 @@ export default {
   data: () => ({
     apiDomain : 'https://demo-api-vue.sanbercloud.com',
     blogs : [],
-    guest: true,
     slide: 0,
     sliding: null
   }),
