@@ -11,7 +11,7 @@
       </div>
     </div>
     <b-row class="d-flex justify-content-center">
-      <b-col cols="8">
+      <b-col col lg="8">
         <b-carousel id="carousel-fade" 
         fade 
         indicators 
