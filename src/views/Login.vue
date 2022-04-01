@@ -1,5 +1,5 @@
 <template>
-    <div class="loginDiv">
+    <div class="loginContainer">
     <table>
         <tr>
             <td><h5><b-icon icon="envelope"></b-icon> Email</h5></td>
@@ -27,7 +27,7 @@
 table {
     margin: 25px auto;
 }
-.loginDiv {
+.loginContainer {
      padding-bottom: 220px;
 }
 </style>

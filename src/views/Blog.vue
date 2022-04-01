@@ -1,7 +1,7 @@
 <template>
   <div v-if="blog.id" class="contentBlog p-5">
-    <img :src="blog.photo ? apiDomain + blog.photo : 'https://picsum.photos/200/300'" class="mb-3" /><br />
-    <table>
+    <img :src="blog.photo ? apiDomain + blog.photo : 'https://picsum.photos/200/300'" class="mb-3"/><br />
+    <table style="margin: 0 auto">
       <tr>
         <td><h3>Judul</h3></td>
         <td><h3>:</h3></td>
@@ -29,6 +29,10 @@ img {
 border-radius: 60px;
 border-top-left-radius: 10px;
 border-bottom-right-radius: 10px;
+box-shadow: 10px 10px;
+}
+td {
+  text-align: left;
 }
 </style>
 
