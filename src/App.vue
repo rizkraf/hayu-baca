@@ -119,6 +119,9 @@ export default {
         .then(() => {
           this.setToken("");
           this.setUser({});
+          if (this.$route.path != '/') {
+            this.$router.push("/")
+        }
           //this.guest = true
         })
         .catch((response) => {
