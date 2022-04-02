@@ -104,7 +104,7 @@ export default {
 
       this.axios(config)
         .then((response) => {
-          alert(response.message);
+          response.message
           this.$router.push("/login")
         })
         .catch((response) => {
@@ -125,7 +125,7 @@ export default {
       this.axios(config)
         .then((response) => {
           this.setToken(response.data.access_token);
-          alert("Berhasil Login");
+          this.$router.push("/");
         })
         .catch((response) => {
           console.log(response);
