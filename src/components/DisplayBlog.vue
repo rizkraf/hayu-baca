@@ -30,6 +30,7 @@
   </div>
 </template>
 
+<!-- ini styling untuk DisplayBlog. -->
 <style>
 img {
   max-width: 350px;
@@ -48,8 +49,7 @@ td {
 </style>
 
 <script>
-// Ini Display Blog Nya...
-// Tinggal Menyesuaikan Aja... :3.
+// Ini Display Blog.
 export default {
   data: () => ({
     apiDomain: "https://demo-api-vue.sanbercloud.com",

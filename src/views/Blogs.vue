@@ -10,8 +10,6 @@
   </div>
 </template>
 
-<style></style>
-
 <script>
 import DisplayBlogVue from "../components/DisplayBlog.vue";
 
@@ -20,27 +18,23 @@ export default {
     apiDomain: "https://demo-api-vue.sanbercloud.com",
     blogs: [],
     page: 0,
-    // lengthPage : 0,
     perPage: 0,
     total: 0,
   }),
 
   components: {
-    // Komponen Untuk Display Blognya... Nanti Ganti Nya Di Komponent...
+    // Component Untuk DisplayBlog nya, penggantiannya di component.
     "display-blog": DisplayBlogVue,
   },
 
   methods: {
-    // Method keHalaman(id) Ini Untuk Pagination... Karena Saya Belajarnya Pagination Vuetify...
-    // Jadi Saya Buat Ini Untuk Paginationnya Sementara...
-    // Nanti Mungkin Pas Styling Method Ini Kepakai... :3.
+    // Methods untuk pagination.
     keHalaman(id) {
       this.page = id;
-      // Set Dulu Page Berapa Trus Jalanin Ambil Blog Nya...
       this.go();
     },
 
-    // Ini Untuk Ambil Blognya...
+    // Ini Untuk Ambil data Blognya.
     go() {
       const config = {
         method: "get",
@@ -51,7 +45,6 @@ export default {
           let { blogs } = response.data;
           this.blogs = blogs.data;
           this.page = blogs.current_page;
-          // this.lengthPage = blogs.last_page
           this.perPage = blogs.per_page;
           this.total = blogs.total;
         })
