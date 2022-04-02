@@ -37,6 +37,7 @@
                     </td>
                 </tr>
             </table>
+            <b-button @click="toast('b-toaster-top-center')" class="mb-2">b-toaster-top-center</b-button>
         </div>
     </div>
 </template>
@@ -80,9 +81,19 @@ export default {
         password: "sanbercode",
         showpassword: false,
         apiDomain: "https://demo-api-vue.sanbercloud.com",
+        counter: 0
     }),
 
     methods: {
+        toast(toaster, append = false) {
+            this.$bvToast.toast('Anda telah login', {
+                title: `Toaster ${toaster}`,
+                toaster: toaster,
+                solid: true,
+                appendToast: append
+            })
+            console.log(this.$bvToast.toast)
+        },
         ...mapActions({
             setToken: "auth/setToken",
         }),
@@ -100,6 +111,8 @@ export default {
                 .then((response) => {
                     this.setToken(response.data.access_token);
                     this.$router.push("/");
+                    console.log(this.toast)
+                    this.toast('b-toaster-top-center')
                 })
                 .catch((response) => {
                     console.log(response);
