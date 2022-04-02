@@ -4,30 +4,36 @@
       <div id="nav">
         <div class="mb-5">
           <b-navbar toggleable="sm" type="light" variant="transparent">
-            <b-navbar-brand href="#">
-              <h2 class="title">HayuBaca!</h2>
-            </b-navbar-brand>
+              <b-navbar-brand>
+                <router-link to="/" custom v-slot="{ navigate }">
+                  <h2 class="title" @click="navigate" @keypress.enter="navigate" role="link">HayuBaca!</h2>
+                </router-link>
+              </b-navbar-brand>
 
             <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
             <b-collapse id="nav-collapse" is-nav>
               <b-navbar-nav>
-                <b-nav-item href="#" class="mr-2 mt-1">
-                  <router-link to="/">
+                <router-link to="/" custom v-slot="{ navigate }">
+                  <b-nav-item class="mr-2 mt-1" @click="navigate" @keypress.enter="navigate" role="link">
                     <b-icon icon="house-door-fill"></b-icon>
                     <h6>Beranda</h6>
-                  </router-link>
-                </b-nav-item>
-                <b-nav-item href="#" class="mr-2 mt-1">
-                  <router-link to="/blogs">
+                  </b-nav-item>
+                </router-link>
+                <router-link to="/blogs" custom v-slot="{ navigate }">
+                  <b-nav-item class="mr-2 mt-1" @click="navigate" @keypress.enter="navigate" role="link">
                     <b-icon icon="file-earmark-fill"></b-icon>
                     <h6>Artikel</h6>
-                  </router-link>
-                </b-nav-item>
+                  </b-nav-item>
+                </router-link>
               </b-navbar-nav>
               <b-navbar-nav class="ml-auto">
-                <div class="d-flex align-items-center">
-                  <b-nav-item to="/login" v-if="guest">Masuk</b-nav-item>
+                <div class="d-flex align-items-center justify-content-center">
+                  <b-nav-item v-if="guest">
+                    <router-link to="/login" custom v-slot="{ navigate }">
+                      <span @click="navigate" @keypress.enter="navigate" role="link">Masuk</span>
+                    </router-link>
+                  </b-nav-item>
                   <b-nav-item-dropdown right v-if="!guest">
                     <template #button-content>
                       <em>
@@ -36,7 +42,9 @@
                         </b-avatar> | {{ user.name }}
                       </em>
                     </template>
-                    <b-dropdown-item to="/post">Kelola Artikel</b-dropdown-item>
+                    <router-link to="/post" custom v-slot="{ navigate }">
+                      <b-dropdown-item @click="navigate" @keypress.enter="navigate" role="link">Kelola Artikel</b-dropdown-item>
+                    </router-link>
                     <b-dropdown-item @click="logout">Keluar</b-dropdown-item>
                   </b-nav-item-dropdown>
                 </div>
@@ -67,7 +75,6 @@
   background-repeat: no-repeat;
   background-position: center;
 }
-
 #nav a {
   font-weight: bold;
   color: #2c3e50;
@@ -102,35 +109,49 @@ export default {
       guest: "auth/guest",
       user: "auth/user",
       token: "auth/token",
+      alertText : 'alert/text'
     }),
   },
   methods: {
+    toast(text, append = false) {
+      this.$bvToast.toast(text, {
+        title: 'Notifikasi',
+        toaster: 'b-toaster-top-center',
+        solid: true,
+        appendToast: append
+      })
+    },
     logout() {
       let config = {
         method: "post",
         url: this.apiDomain + "/api/v2/auth/logout",
         headers: {
-          Authorization: "Bearer " + this.token,
+          Authorization: "Bearer " + this.token
         },
-      };
-
+      }
+      
       this.axios(config)
         .then(() => {
-          this.setToken("");
-          this.setUser({});
+          this.setToken("")
+          this.setUser({})
+          this.setGuest(true)
           if (this.$route.path != '/') {
+            this.setText('Anda Berhasil Logout')
             this.$router.push("/")
-        }
-          //this.guest = true
+          } else {
+            this.toast('Anda Berhasil logout.')
+          }
         })
-        .catch((response) => {
-          console.log(response.data.error);
+        .catch(() => {
+          this.toast('Anda Gagal logout.')
         });
     },
     ...mapActions({
       setToken: "auth/setToken",
       setUser: "auth/setUser",
       checkToken: "auth/checkToken",
+      setText: "alert/setText",
+      setGuest: "auth/setGuest"
     }),
   },
   mounted() {

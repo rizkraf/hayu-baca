@@ -1,32 +1,21 @@
 <template>
-  <div v-if="blog.id" class="contentBlog p-5">
+  <div v-if="blog.id" class="contentBlog pb-5 pr-5 pl-5">
+    <router-link to="/blogs" custom v-slot="{ navigate }">
+      <b-link class="mb-2" @click="navigate" @keypress.enter="navigate" role="link">
+        <h4 style="text-decoration: underline;">Kembali</h4>
+      </b-link>
+    </router-link>
     <div class="blogContainer">
-    <img :src="blog.photo ? apiDomain + blog.photo : 'https://picsum.photos/200/300'" class="mb-3"/><br />
-    
-          <table style="margin: 0 auto">
-      <tr>
-        <td><h3>Judul</h3></td>
-        <td><h3>:</h3></td>
-        <td>
-          <h3>{{ blog.title }}</h3>
-        </td>
-      </tr>
-      <tr>
-        <td><h3>Deskripsi</h3></td>
-        <td><h3>:</h3></td>
-        <td>
-          <h3>{{ blog.description }}</h3>
-        </td>
-      </tr>
-      <tr></tr>
-    </table>
+      <img :src="blog.photo ? apiDomain + blog.photo : 'https://picsum.photos/200/300'" class="mb-3"/><br />
+      <h2 v-text="blog.title" class="mb-2"></h2>
+      <p v-text="blog.description"></p>
     </div>
   </div>
 </template>
 <!-- ini styling untuk Blog. -->
 <style>
 .blogContainer {
-      margin: 0px auto;
+  margin: 0px auto;
   max-width: 700px;
   min-width: 300px;
   padding: 20px;
@@ -37,12 +26,12 @@
 }
 img {
   margin-bottom: 20px;
-  max-width: 350px;
+  max-width: 600px;
   max-height: 350px;
-border-radius: 60px;
-border-top-left-radius: 10px;
-border-bottom-right-radius: 10px;
-box-shadow: 10px 10px;
+  border-radius: 60px;
+  border-top-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  box-shadow: 10px 10px;
 }
 td {
   text-align: left;
