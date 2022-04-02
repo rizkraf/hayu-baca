@@ -62,6 +62,7 @@ data: () => ({
             this.axios(config)
                 .then( (response) => {
                     this.setToken(response.data.access_token)
+                    this.$router.push("/")
                     alert("Berhasil Login")
                 })
                 .catch( (response) => {
