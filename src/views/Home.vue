@@ -70,7 +70,7 @@ export default {
       this.sliding = false;
     },
 
-    // Method Go() Ini Tuh Untuk Mengambil Blog Random
+    // Method Go() Ini untuk memanggil blog random yang akan ditampilkan di carousel
     go() {
       const config = {
         method : 'get',
@@ -88,7 +88,7 @@ export default {
   },
 
   created() {
-    // Ketika Di Buat... Panggil Fungsi Go()
+    // Ketika Di Buat Panggil Fungsi Go()
     this.go()
   }
 }
