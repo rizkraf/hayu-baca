@@ -2,7 +2,7 @@
   <div>
     <P>Semua Artikel<b-icon icon="arrow-down-short"></b-icon></P>
     <hr />
-    <display-blog v-for="blog in blogs" :key="`blog-` + blog.id" :blog="blog"></display-blog>
+    <display-blog v-for="blog in blogs" :key="`blog-` + blog.id" :blog="blog" style="margin: 25px auto; padding: 25px;"></display-blog>
 
     <div class="d-flex justify-content-center">
       <b-pagination v-model="page" @input="go" :total-rows="total" :per-page="perPage" pills size="sm"></b-pagination>

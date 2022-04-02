@@ -4,7 +4,7 @@
       <div id="nav">
         <div class="mb-5">
           <b-navbar toggleable="sm" type="light" variant="transparent">
-            <b-navbar-brand href="#">
+            <b-navbar-brand style="user-select: none;">
               <h2 class="title">HayuBaca!</h2>
             </b-navbar-brand>
 
