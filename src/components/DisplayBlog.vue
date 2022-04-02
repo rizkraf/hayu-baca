@@ -1,37 +1,23 @@
 <template>
   <div>
-    <img :src="blog.photo ? apiDomain + blog.photo : 'https://picsum.photos/200/300'" class="mb-3" style="box-shadow: 10px 10px" /><br />
-    <table style="margin: 0 auto">
+    <img :src="blog.photo ? apiDomain + blog.photo : 'https://picsum.photos/200/300'" class="mb-1" style="box-shadow: 10px 10px" /><br />
+    <table class="d-flex justify-content-center mb-0">
       <tr>
-        <td><h5>Judul</h5></td>
-        <td><h5>:</h5></td>
-        <td>
-          <h5>{{ blog.title }}</h5>
-        </td>
-      </tr>
-      <tr>
-        <td><h5>Deskripsi</h5></td>
-        <td><h5>:</h5></td>
-        <td>
-          <h5>{{ blog.description }}</h5>
-        </td>
-      </tr>
-      <tr>
-        <td><h5>Nomor Artikel</h5></td>
-        <td><h5>:</h5></td>
-        <td>
-          <h5>
-            <router-link :to="'/blog/' + blog.id">{{ blog.id }}</router-link>
-          </h5>
-        </td>
+        <td><h4>Judul</h4></td>
+        <td><h4>:</h4></td>
+        <td><h4>{{ blog.title}}</h4></td>
       </tr>
     </table>
+    <router-link :to="'/blog/' + blog.id"><h5>Selengkapnya...</h5></router-link>
     <hr />
   </div>
 </template>
 
 <!-- ini styling untuk DisplayBlog. -->
 <style>
+td {
+  margin: 0px auto;
+}
 img {
   max-width: 350px;
   max-height: 350px;
@@ -42,9 +28,6 @@ img {
 }
 hr {
   width: 500px;
-}
-td {
-  text-align: left;
 }
 </style>
 

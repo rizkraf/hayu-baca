@@ -30,14 +30,16 @@
                 <tr>
                     <td></td>
                     <td></td>
-                    <td>
+                    <td class="d-flex justify-content-center">
                         <b-button pill variant="success" v-on:click="submit">Masuk <b-icon icon="arrow-right-circle">
                             </b-icon>
                         </b-button>
                     </td>
                 </tr>
             </table>
-            <b-button @click="toast('b-toaster-top-center')" class="mb-2">b-toaster-top-center</b-button>
+            <!-- 
+            <b-button @click="toast('b-toaster-top-center')" class="mb-2"> // Masuk ke submit button</b-button>
+            -->
         </div>
     </div>
 </template>
@@ -113,6 +115,7 @@ export default {
                     this.$router.push("/");
                     console.log(this.toast)
                     this.toast('b-toaster-top-center')
+                    alert("Anda berhasil login");
                 })
                 .catch((response) => {
                     console.log(response);

@@ -4,7 +4,7 @@
       <div id="nav">
         <div class="mb-5">
           <b-navbar toggleable="sm" type="light" variant="transparent">
-            <b-navbar-brand href="#">
+            <b-navbar-brand style="user-select: none;">
               <h2 class="title">HayuBaca!</h2>
             </b-navbar-brand>
 
@@ -30,17 +30,12 @@
                   <b-nav-item to="/login" v-if="guest">Masuk</b-nav-item>
                   <b-nav-item-dropdown right v-if="!guest">
                     <template #button-content>
-                      <em>
-                        <b-avatar
-                          :src="user.photo_profile ? apiDomain + user.photo_profile : 'https://www.gravatar.com/avatar/Guest?d=identicon&f=y'">
-                        </b-avatar> | {{ user.name }}
-                      </em>
+                      <em> <b-avatar :src="user.photo_profile ? apiDomain + user.photo_profile : 'https://www.gravatar.com/avatar/Guest?d=identicon&f=y'"> </b-avatar> | {{ user.name }} </em>
                     </template>
                     <b-dropdown-item to="/post">Kelola Artikel</b-dropdown-item>
                     <b-dropdown-item @click="logout">Keluar</b-dropdown-item>
                   </b-nav-item-dropdown>
                 </div>
-
               </b-navbar-nav>
             </b-collapse>
           </b-navbar>
@@ -49,9 +44,16 @@
     </b-container>
 
     <router-view />
+
+    <div class="container mt-5">
+      <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <div class="col-md-4 d-flex align-items-center">
+          <span>&copy; 2022 HayuBaca.id</span>
+        </div>
+      </footer>
+    </div>
   </div>
 </template>
-
 
 <!-- Ini styling untuk App. -->
 <style>
@@ -61,7 +63,6 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  padding-bottom: 50px;
   background-image: url("./assets/background.png");
   background-size: cover;
   background-repeat: no-repeat;
