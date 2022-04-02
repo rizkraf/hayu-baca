@@ -4,7 +4,8 @@ export default {
     namespaced : true,
     state : {
         token : '',
-        user : {}
+        user : {},
+        guest : true
     },
     mutations : {
         setToken: (state, payload) => {
@@ -12,6 +13,9 @@ export default {
         },
         setUser : (state, payload) => {
             state.user = payload
+        },
+        setGuest : (state, payload) => {
+            state.guest = payload
         }
     },
     actions: {
@@ -30,19 +34,24 @@ export default {
             axios(config)
                 .then((response) => {
                     commit('setUser', response.data)
+                    commit('setGuest', false)
                 })
                 .catch(() => {
                     commit('setUser', {})
                     commit('setToken', '')
+                    commit('setGuest', true)
                 })
         },
         setUser : ({commit}, payload) => {
             commit('setUser', payload)
+        },
+        setGuest : ({commit}, payload) => {
+            commit('setGuest', payload)
         }
     },
     getters : {
         user : state => state.user,
         token : state => state.token,
-        guest : state => Object.keys(state.user).length === 0
+        guest : state => state.guest
     }
 }

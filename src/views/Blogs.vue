@@ -1,13 +1,14 @@
 <template>
-  <div>
+  <b-container>
     <P>Semua Artikel<b-icon icon="arrow-down-short"></b-icon></P>
     <hr />
-    <display-blog v-for="blog in blogs" :key="`blog-` + blog.id" :blog="blog" style="margin: 25px auto; padding: 25px;"></display-blog>
-
+    <b-row>
+      <display-blog v-for="blog in blogs" :key="`blog-` + blog.id" :blog="blog"></display-blog>
+    </b-row>
     <div class="d-flex justify-content-center">
-      <b-pagination v-model="page" @input="go" :total-rows="total" :per-page="perPage" pills size="sm"></b-pagination>
+      <b-pagination v-model="page" @input="go" :total-rows="total" :per-page="perPage" pills></b-pagination>
     </div>
-  </div>
+  </b-container>
 </template>
 
 <script>
@@ -17,7 +18,7 @@ export default {
   data: () => ({
     apiDomain: "https://demo-api-vue.sanbercloud.com",
     blogs: [],
-    page: 0,
+    page: 1,
     perPage: 0,
     total: 0,
   }),

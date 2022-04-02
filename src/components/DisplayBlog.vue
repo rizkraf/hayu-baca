@@ -1,33 +1,37 @@
 <template>
-  <div>
-    <img :src="blog.photo ? apiDomain + blog.photo : 'https://picsum.photos/200/300'" class="mb-1" style="box-shadow: 10px 10px" /><br />
-    <table class="d-flex justify-content-center mb-0">
-      <tr>
-        <td><h4>Judul</h4></td>
-        <td><h4>:</h4></td>
-        <td><h4>{{ blog.title}}</h4></td>
-      </tr>
-    </table>
-    <router-link :to="'/blog/' + blog.id"><h5>Selengkapnya...</h5></router-link>
-    <hr />
-  </div>
+  <b-col lg="6" class="d-flex justify-content-center mb-5">
+  <b-card
+  :title="blog.title"
+  :img-src="blog.photo ? apiDomain + blog.photo : 'https://picsum.photos/200/300'"
+  img-alt="Thumbnail"
+  img-top
+  tag="article"
+  class="mb-2"
+  style="box-shadow: 7px 5px; width: 24rem; border-radius: 60px;
+  border-top-left-radius: 10px;
+  border-bottom-right-radius: 10px; transition: 0.2s;"> 
+    <router-link :to="'/blog/' + blog.id" custom v-slot="{ navigate }">
+      <b-link class="stretched-link" @click="navigate" @keypress.enter="navigate" role="link"></b-link>
+    </router-link>
+  </b-card>
+  </b-col>
 </template>
 
 <!-- ini styling untuk DisplayBlog. -->
 <style>
-td {
-  margin: 0px auto;
+.card:hover {
+  transform: translate(5px, 5px);
+  transition: 0.2s;
 }
-img {
-  max-width: 350px;
-  max-height: 350px;
+
+.card-img, .card-img-top {
+  max-width: 24rem;
+  max-height: 200px;
+  object-fit: cover;
   border-radius: 60px;
   border-top-left-radius: 10px;
   border-bottom-right-radius: 10px;
-  box-shadow: 5px 5px;
-}
-hr {
-  width: 500px;
+  box-shadow: 0 0;
 }
 </style>
 

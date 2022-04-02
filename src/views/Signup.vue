@@ -37,8 +37,19 @@
         <tr>
           <td></td>
           <td></td>
-          <td>
+          <td class="d-flex align-items-center justify-content-center">
             <b-button pill variant="success" v-on:click="register">Mendaftar <b-icon icon="check-square"></b-icon></b-button>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td>
+            Sudah Punya Akun ?. <router-link to="/login" custom v-slot="{ navigate }">
+              <b-link class="mb-2" @click="navigate" @keypress.enter="navigate" role="link">
+                <span style="text-decoration: underline;">Klik Disini Untuk Login.</span>
+              </b-link>
+            </router-link>
           </td>
         </tr>
       </table>
@@ -53,6 +64,9 @@ table {
 }
 td {
   padding-top: 10px;
+}
+input[type=text], input[type=password], input[type=email] {
+    width : 100%;
 }
 .signupDiv {
   margin: 25px auto 200px;
@@ -75,21 +89,34 @@ td {
 </style>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   data: () => ({
-    name: "Zidan",
-    email: "zidan@gmail.com",
-    password: "sanbercodezidan",
+    name: "",
+    email: "",
+    password: "",
     showpassword: false,
     apiDomain: "https://demo-api-vue.sanbercloud.com",
   }),
-
+  computed : {
+    ...mapGetters ({
+      guest : 'auth/guest'
+    })
+  },
   methods: {
     ...mapActions({
       setToken: "auth/setToken",
+      setText: "alert/setText"
     }),
+    toast(text, append = false) {
+      this.$bvToast.toast(text, {
+        title: 'Notifikasi',
+        toaster: 'b-toaster-top-center',
+        solid: true,
+        appendToast: append
+      })
+    },
     register() {
       let photo = this.$refs.photo.files[0];
       let formData = new FormData();
@@ -101,39 +128,23 @@ export default {
       const config = {
         method: "post",
         url: this.apiDomain + "/api/v2/auth/register",
-        data: formData,
+        data: formData
       };
 
       this.axios(config)
-        .then((response) => {
-          response.message
+        .then(() => {
+          this.setText('Anda Berhasil Register. Dipersilahkan Untuk Login.')
           this.$router.push("/login")
         })
-        .catch((response) => {
-          console.log(response);
-          alert("Gagal Register");
+        .catch(() => {
+          this.toast("Gagal Register. Coba Lagi Nanti.");
         });
-    },
-    login() {
-      const config = {
-        method: "post",
-        url: this.apiDomain + "/api/v2/auth/login",
-        data: {
-          email: this.email,
-          password: this.password,
-        },
-      };
-
-      this.axios(config)
-        .then((response) => {
-          this.setToken(response.data.access_token);
-          this.$router.push("/");
-        })
-        .catch((response) => {
-          console.log(response);
-          alert("Gagal Login");
-        });
-    },
+    }
   },
+  mounted() {
+    if (!this.guest) {
+      this.$router.push("/")
+    }
+  }
 };
 </script>

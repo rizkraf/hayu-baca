@@ -5,11 +5,14 @@
       <h3><span>HayuBaca!</span> merupakan platform digital yang menampung para penjelajah internet untuk bertukar dan
         berbagi informasi menarik seputar dunia secara gratis!</h3><br>
       <div>
-        <div>
-          <h5>Bergabunglah bersama kami untuk mendaptakan berita terpercaya dan terbaru.</h5>
-        <b-button pill variant="success" to="/signup">Daftar <b-icon icon="arrow-right-circle"></b-icon>
-        </b-button>
-        </div>
+      <div v-if="guest">
+        <h5>Bergabunglah bersama kami untuk mendaptakan berita terpercaya dan terbaru.</h5>
+        <router-link to="/signup" custom v-slot="{ navigate }">
+          <b-button pill variant="success" @click="navigate" @keypress.enter="navigate" role="link">
+            Daftar <b-icon icon="arrow-right-circle"></b-icon>
+          </b-button>
+        </router-link>
+      </div>
       </div>
     </div>
     <b-row class="d-flex justify-content-center">
@@ -18,22 +21,22 @@
         fade 
         indicators 
         controls 
-          style="text-shadow: 1px 1px 2px #000; margin: auto;" 
-          @sliding-start="onSlideStart" 
-          @sliding-end="onSlideEnd">
+        style="text-shadow: 1px 1px 2px #000; margin: auto;" 
+        @sliding-start="onSlideStart" 
+        @sliding-end="onSlideEnd">
           <b-carousel-slide v-for="blog in blogs" 
           :key="`blog-` + blog.id" 
           :blog="blog" 
           :caption="blog.title"
           :text="`${blog.description.substring(0, 100)} ...`"
           :img-src="blog.photo ? apiDomain + blog.photo : 'https://picsum.photos/200/300'">
-            <b-link class="stretched-link" :to="'/blog/'+blog.id"></b-link>
+            <router-link :to="'/blog/'+blog.id" custom v-slot="{ navigate }">
+              <b-link class="stretched-link" @click="navigate" @keypress.enter="navigate" role="link"></b-link>
+            </router-link>
           </b-carousel-slide>
         </b-carousel>
       </b-col>
-
     </b-row>
-
   </b-container>
 </template>
 
@@ -45,7 +48,10 @@
 </style>
 
 <script>
-import DisplayBlogVue from '../components/DisplayBlog.vue'
+import {
+    mapActions,
+    mapGetters
+} from "vuex";
 
 export default {
   data: () => ({
@@ -55,10 +61,11 @@ export default {
     sliding: null
   }),
 
-  components : {
-    // Ini Tempat Untuk Memanggil Components...
-    // eslint-disable-next-line vue/no-unused-components
-    'display-blog' : DisplayBlogVue
+  computed : {
+    ...mapGetters({
+      alertText : 'alert/text',
+      guest : 'auth/guest'
+    })
   },
 
   methods : {
@@ -69,7 +76,17 @@ export default {
     onSlideEnd() {
       this.sliding = false;
     },
-
+    toast(text, append = false) {
+        this.$bvToast.toast(text, {
+            title: 'Notifikasi',
+            toaster: 'b-toaster-top-center',
+            solid: true,
+            appendToast: append
+        })
+    },
+    ...mapActions({
+      setText: "alert/setText"
+    }),
     // Method Go() Ini untuk memanggil blog random yang akan ditampilkan di carousel
     go() {
       const config = {
@@ -90,6 +107,10 @@ export default {
   created() {
     // Ketika Di Buat Panggil Fungsi Go()
     this.go()
+    if (this.alertText.length > 0) {
+      this.toast(this.alertText)
+      this.setText('');
+    }
   }
 }
 </script>

@@ -27,19 +27,15 @@
                     <td><input type="checkbox" v-model="showpassword" /></td>
                     <td>Lihat Kata Sandi</td>
                 </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td class="d-flex justify-content-center">
-                        <b-button pill variant="success" v-on:click="submit">Masuk <b-icon icon="arrow-right-circle">
-                            </b-icon>
-                        </b-button>
-                    </td>
-                </tr>
             </table>
-            <!-- 
-            <b-button @click="toast('b-toaster-top-center')" class="mb-2"> // Masuk ke submit button</b-button>
-            -->
+            <b-button pill variant="success" v-on:click="submit">
+                Masuk <b-icon icon="arrow-right-circle"></b-icon>
+            </b-button><br><br>
+            Belum Punya Akun ?. <router-link to="/signup" custom v-slot="{ navigate }">
+                <b-link class="mb-2" @click="navigate" @keypress.enter="navigate" role="link">
+                    <span style="text-decoration: underline;">Klik Disini Untuk Mendaftar.</span>
+                </b-link>
+            </router-link>
         </div>
     </div>
 </template>
@@ -53,7 +49,9 @@ table {
 td {
     padding-top: 10px;
 }
-
+input[type=text], input[type=password], input[type=email] {
+    width : 100%;
+}
 .loginDiv {
     margin: 25px auto;
     padding: 100px 25px;
@@ -73,31 +71,35 @@ td {
 </style>
 
 <script>
-import {
-    mapActions
-} from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
     data: () => ({
         email: "mubarok.iqbal@gmail.com",
         password: "sanbercode",
         showpassword: false,
-        apiDomain: "https://demo-api-vue.sanbercloud.com",
-        counter: 0
+        apiDomain: "https://demo-api-vue.sanbercloud.com"
     }),
 
+    computed : {
+        ...mapGetters({
+            alertText : 'alert/text',
+            guest : 'auth/guest'
+        })
+    },
+
     methods: {
-        toast(toaster, append = false) {
-            this.$bvToast.toast('Anda telah login', {
-                title: `Toaster ${toaster}`,
-                toaster: toaster,
+        toast(text, append = false) {
+            this.$bvToast.toast(text, {
+                title: 'Notifikasi',
+                toaster: 'b-toaster-top-center',
                 solid: true,
                 appendToast: append
             })
-            console.log(this.$bvToast.toast)
         },
         ...mapActions({
             setToken: "auth/setToken",
+            setText: "alert/setText"
         }),
         submit() {
             const config = {
@@ -112,16 +114,23 @@ export default {
             this.axios(config)
                 .then((response) => {
                     this.setToken(response.data.access_token);
+                    this.setText('Anda Telah Berhasil Login');
                     this.$router.push("/");
-                    console.log(this.toast)
-                    this.toast('b-toaster-top-center')
-                    alert("Anda berhasil login");
                 })
                 .catch((response) => {
                     console.log(response);
-                    alert("Gagal Login");
+                    this.toast('Anda Gagal Login. Cek Ulang Email Dan Passwordnya. Jika Masih Gagal Hubungi Admin.')
                 });
         },
     },
+    mounted() {
+        if (!this.guest) {
+            this.$router.push("/")
+        }
+        if (this.alertText.length > 0) {
+            this.toast(this.alertText)
+            this.setText('');
+        }
+    }
 };
 </script>
