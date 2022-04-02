@@ -105,7 +105,7 @@ export default {
       this.axios(config)
         .then((response) => {
           alert(response.message);
-          this.login();
+          this.$router.push("/login")
         })
         .catch((response) => {
           console.log(response);
