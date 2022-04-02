@@ -1,12 +1,13 @@
 <template>
     <b-container>
         <!-- Nanti munculnya cuman ketika udah login doang -->
-        <b-form @submit.prevent="submitForm()">
+        <b-form id="form" @submit.prevent="submitForm()">
             <b-alert :show="dismissCountDown"
             dismissible
             fade
             :variant="alertVariant"
-            @dismiss-count-down="countDownChanged">{{alertText}}</b-alert>
+            @dismiss-count-down="countDownChanged">{{alertText}}
+            </b-alert>
             <label for="judul">Judul</label>
             <b-form-input 
             name="title"
@@ -40,8 +41,8 @@
             <div v-else-if="buttonStatus == 'upload'">
                 <b-form-file class="mt-3"
                 name="photo" ref="photo"
-                placeholder="Choose a file or drop it here..."
-                drop-placeholder="Drop file here..."
+                placeholder="Masukkan gambar disini"
+                drop-placeholder="Masukkan gambar disini..."
                 ></b-form-file>
                 <b-button pill @click="submitPhoto(idUploadBlog)" variant="success" class="mt-3">Unggah</b-button>
                 <b-button pill @click="clearForm" variant="danger" class="mt-3 ml-3">Batal</b-button>
@@ -72,6 +73,9 @@
 </template>
 
 <style>
+    html {
+        scroll-behavior: smooth;
+    }
     .tableArtikel {
         border-collapse: collapse;
         border-spacing: 0;
@@ -83,6 +87,7 @@
         text-align: left;
         padding: 8px;
     }
+    
 </style>
 
 <script>
@@ -181,6 +186,7 @@ export default {
             this.axios(config)
                 .then((response) => {
                     this.getBlogs()
+                    window.scrollTo(0, 0)
                     this.alertText = 'Artikel telah berhasil dihapus'
                     this.alertVariant = 'danger'
                     this.showAlert()
@@ -194,6 +200,7 @@ export default {
         },
 
         editBlog: function (blog) {
+            window.scrollTo(0, 0)
             this.title = blog.title
             this.description = blog.description
             this.buttonStatus = 'update'
@@ -244,6 +251,7 @@ export default {
         },
 
         uploadPhoto: function (blog) {
+            window.scrollTo(0, 0)
             this.title = blog.title
             this.description = blog.description
             this.buttonStatus = 'upload'
