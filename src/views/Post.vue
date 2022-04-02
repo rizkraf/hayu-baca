@@ -73,7 +73,8 @@
 }
 .contentArtikel {
   padding: 10px;
-  max-width: 500px;
+  max-width: 150px;
+  overflow: hidden;
 }
 .buttonArtikel {
   margin: auto;
