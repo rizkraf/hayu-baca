@@ -22,8 +22,10 @@
           </td>
           <td><h5>:</h5></td>
           <td><input v-model="password" :type="showpassword ? 'text' : 'password'" /></td>
+          <!-- 
           <td><input type="checkbox" v-model="showpassword" /></td>
           <td>Lihat Kata Sandi</td>
+          -->
         </tr>
         <tr>
           <td>
@@ -67,7 +69,7 @@ input[type=text], input[type=password], input[type=email] {
     width : 100%;
 }
 .signupDiv {
-  margin: 25px auto;
+  margin: 25px auto 200px;
   padding: 100px 25px;
   height: 70vh;
 }

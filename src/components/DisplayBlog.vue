@@ -1,17 +1,18 @@
 <template>
   <b-col lg="6" class="d-flex justify-content-center mb-5">
   <b-card
-    :title="blog.title"
-    :img-src="blog.photo ? apiDomain + blog.photo : 'https://picsum.photos/200/300'"
-    img-alt="Thumbnail"
-    img-top
-    tag="article"
-    class="mb-2"
-    style="box-shadow: 7px 5px; width: 24rem; border-radius: 60px;
-    border-top-left-radius: 10px;
-    border-bottom-right-radius: 10px; transition: 0.2s;"> 
-    <b-link class="stretched-link" :to="'/blog/' + blog.id"></b-link>
-
+  :title="blog.title"
+  :img-src="blog.photo ? apiDomain + blog.photo : 'https://picsum.photos/200/300'"
+  img-alt="Thumbnail"
+  img-top
+  tag="article"
+  class="mb-2"
+  style="box-shadow: 7px 5px; width: 24rem; border-radius: 60px;
+  border-top-left-radius: 10px;
+  border-bottom-right-radius: 10px; transition: 0.2s;"> 
+    <router-link :to="'/blog/' + blog.id" custom v-slot="{ navigate }">
+      <b-link class="stretched-link" @click="navigate" @keypress.enter="navigate" role="link"></b-link>
+    </router-link>
   </b-card>
   </b-col>
 </template>

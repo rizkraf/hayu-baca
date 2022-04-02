@@ -91,7 +91,6 @@ html {
 .gray {
     background-color: #ddd;
     color: #000;
-    text-shadow: 1px 1px 1px #555;
 }
 </style>
 
@@ -276,6 +275,20 @@ export default {
                     console.log(error)
                 })
         },
+      };
+      this.axios(config)
+        .then((response) => {
+          this.getBlogs();
+          window.scrollTo(0, 0);
+          this.alertText = "Artikel telah berhasil dihapus";
+          this.alertVariant = "danger";
+          this.showAlert();
+          response.data.message;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      console.log(id);
     },
     mounted() {
         this.getBlogs()
