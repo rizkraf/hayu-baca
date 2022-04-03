@@ -22,10 +22,8 @@
           </td>
           <td><h5>:</h5></td>
           <td><input v-model="password" :type="showpassword ? 'text' : 'password'" /></td>
-          <!-- 
           <td><input type="checkbox" v-model="showpassword" /></td>
           <td>Lihat Kata Sandi</td>
-          -->
         </tr>
         <tr>
           <td>
@@ -44,13 +42,7 @@
         <tr>
           <td></td>
           <td></td>
-          <td>
-            Sudah Punya Akun ?. <router-link to="/login" custom v-slot="{ navigate }">
-              <b-link class="mb-2" @click="navigate" @keypress.enter="navigate" role="link">
-                <span style="text-decoration: underline;">Klik Disini Untuk Login.</span>
-              </b-link>
-            </router-link>
-          </td>
+          <td>Sudah Punya Akun ?. <router-link to="/login">Klik Disini Untuk Login.</router-link></td>
         </tr>
       </table>
     </div>
@@ -65,8 +57,10 @@ table {
 td {
   padding-top: 10px;
 }
-input[type=text], input[type=password], input[type=email] {
-    width : 100%;
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+  width: 100%;
 }
 .signupDiv {
   margin: 25px auto 200px;
@@ -99,23 +93,23 @@ export default {
     showpassword: false,
     apiDomain: "https://demo-api-vue.sanbercloud.com",
   }),
-  computed : {
-    ...mapGetters ({
-      guest : 'auth/guest'
-    })
+  computed: {
+    ...mapGetters({
+      guest: "auth/guest",
+    }),
   },
   methods: {
     ...mapActions({
       setToken: "auth/setToken",
-      setText: "alert/setText"
+      setText: "alert/setText",
     }),
     toast(text, append = false) {
       this.$bvToast.toast(text, {
-        title: 'Notifikasi',
-        toaster: 'b-toaster-top-center',
+        title: "Notifikasi",
+        toaster: "b-toaster-top-center",
         solid: true,
-        appendToast: append
-      })
+        appendToast: append,
+      });
     },
     register() {
       let photo = this.$refs.photo.files[0];
@@ -128,23 +122,23 @@ export default {
       const config = {
         method: "post",
         url: this.apiDomain + "/api/v2/auth/register",
-        data: formData
+        data: formData,
       };
 
       this.axios(config)
         .then(() => {
-          this.setText('Anda Berhasil Register. Dipersilahkan Untuk Login.')
-          this.$router.push("/login")
+          this.setText("Anda Berhasil Register. Dipersilahkan Untuk Login.");
+          this.$router.push("/login");
         })
         .catch(() => {
           this.toast("Gagal Register. Coba Lagi Nanti.");
         });
-    }
+    },
   },
   mounted() {
     if (!this.guest) {
-      this.$router.push("/")
+      this.$router.push("/");
     }
-  }
+  },
 };
 </script>

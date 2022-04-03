@@ -3,11 +3,11 @@
     <!-- Nanti munculnya cuman ketika udah login doang -->
     <b-form @submit.prevent="submitForm()">
         <b-alert :show="dismissCountDown" dismissible fade :variant="alertVariant" @dismiss-count-down="countDownChanged">{{ alertText }}</b-alert>
-        <label for="judul">Judul</label>
-        <b-form-input name="title" ref="title" :state="titleError" v-model="title" placeholder="Masukan Judul ..." :readonly="buttonStatus == 'upload'" id="judul"></b-form-input>
+        <label for="judul"><h5>Judul</h5></label>
+        <b-form-input name="title" ref="title" :state="titleError" v-model="title" placeholder="Masukan Judul ..." :readonly="buttonStatus == 'upload'" id="judul" class="formInputCRUD"></b-form-input>
 
-        <label for="deskripsi">Isi Artikel</label>
-        <b-form-textarea id="textarea" v-model="description" ref="description" :state="descriptionError" placeholder="Masukan Deskripsi ..." rows="3" :readonly="buttonStatus == 'upload'"></b-form-textarea>
+        <label for="deskripsi"><h5>Isi Artikel</h5></label>
+        <b-form-textarea id="textarea" class="formInputCRUD" v-model="description" ref="description" :state="descriptionError" placeholder="Masukan Deskripsi ..." rows="3" :readonly="buttonStatus == 'upload'"></b-form-textarea>
 
         <div v-if="buttonStatus == 'submit'">
             <b-button pill type="submit" variant="success" class="mt-3">Terbitkan</b-button>
@@ -26,8 +26,8 @@
     </b-form>
 
     <hr>
-    <label for="search">Cari Judul Artikel ...</label>
-    <b-form-input v-on:input="cari(search)" class="mb-3" v-model="search" placeholder="Cari Artikel ..." id="search"></b-form-input>
+    <label for="search"><h5>Cari Judul Artikel ...</h5></label>
+    <b-form-input v-on:input="cari(search)" class="formInputCRUD" v-model="search" placeholder="Cari Artikel ..." id="search"></b-form-input>
 
     <div class="postContainer"> 
         <table class="tableArtikel">
@@ -77,6 +77,14 @@
   padding: 10px;
   max-width: 150px;
   overflow: hidden;
+}
+.formInputCRUD {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #cccccc;
+    box-shadow: 5px 5px 10px #cccccc, -5px -5px 10px #ffffff;
+    margin-bottom: 20px;
 }
 td {
   margin: auto;

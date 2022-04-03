@@ -1,14 +1,14 @@
 <template>
   <div v-if="blog.id" class="contentBlog pb-5 pr-5 pl-5">
-    <router-link to="/blogs" custom v-slot="{ navigate }">
-      <b-link class="mb-2" @click="navigate" @keypress.enter="navigate" role="link">
-        <h4 style="text-decoration: underline;">Kembali</h4>
+    <router-link to="/blogs">
+      <b-link class="mb-2">
+        <h4 style="text-decoration: underline">Kembali</h4>
       </b-link>
     </router-link>
     <div class="blogContainer">
-      <img :src="blog.photo ? apiDomain + blog.photo : 'https://picsum.photos/200/300'" class="mb-3"/><br />
+      <img :src="blog.photo ? apiDomain + blog.photo : 'https://picsum.photos/200/300'" class="mb-3" /><br />
       <h2 v-text="blog.title" class="mb-2"></h2>
-      <p v-text="blog.description"></p>
+      <h5 v-text="blog.description"></h5>
     </div>
   </div>
 </template>
