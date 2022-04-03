@@ -32,9 +32,7 @@
                     <template #button-content>
                       <em> <b-avatar :src="user.photo_profile ? apiDomain + user.photo_profile : 'https://www.gravatar.com/avatar/Guest?d=identicon&f=y'"> </b-avatar> | {{ user.name }} </em>
                     </template>
-                    <router-link to="/post" custom v-slot="{ navigate }">
-                      <b-dropdown-item @click="navigate" @keypress.enter="navigate" role="link">Kelola Artikel</b-dropdown-item>
-                    </router-link>
+                    <b-dropdown-item><router-link to="/post">Kelola Artikel</router-link></b-dropdown-item>
                     <b-dropdown-item @click="logout">Keluar</b-dropdown-item>
                   </b-nav-item-dropdown>
                 </div>
