@@ -1,6 +1,5 @@
 <template>
   <b-container>
-    <!-- Nanti munculnya cuman ketika udah login doang -->
     <b-form @submit.prevent="submitForm()">
         <b-alert :show="dismissCountDown" dismissible fade :variant="alertVariant" @dismiss-count-down="countDownChanged">{{ alertText }}</b-alert>
         <label for="judul"><h5>Judul</h5></label>
@@ -36,9 +35,9 @@
                     <img class="p-1" width="100" :src="blog.photo ? domain + blog.photo : 'https://dummyimage.com/16:9x1080'" alt="" /> 
                 </td> 
                 <td class="contentArtikel"> 
-                    <h5>
-                    <b>Judul : </b> {{ blog.title }} <br /> 
-                    <b>Deskripsi : </b> <span v-text="blog.description.length > 100 ? blog.description.substring(0, 100) + '...' : blog.description"></span> <br /> 
+                    <h5 class="mt-3">
+                    <b>Judul : </b><h5>{{ blog.title }}</h5>
+                    <b>Deskripsi : </b> <p v-text="blog.description.length > 100 ? blog.description.substring(0, 100) + '...' : blog.description" ></p> <br /> 
                     </h5> 
                 </td> 
                 <td> 
