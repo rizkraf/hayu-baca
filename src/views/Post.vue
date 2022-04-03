@@ -27,7 +27,7 @@
 
     <hr>
     <label for="search">Cari Judul Artikel ...</label>
-    <b-form-input v-on:input="cari(search)" v-model="search" placeholder="Cari Artikel ..." id="search"></b-form-input>
+    <b-form-input v-on:input="cari(search)" class="mb-3" v-model="search" placeholder="Cari Artikel ..." id="search"></b-form-input>
 
     <div class="postContainer"> 
         <table class="tableArtikel">
@@ -38,7 +38,7 @@
                 <td class="contentArtikel"> 
                     <h5>
                     <b>Judul : </b> {{ blog.title }} <br /> 
-                    <b>Deskripsi : </b> {{ blog.description }} <br /> 
+                    <b>Deskripsi : </b> {{ blog.description.substring(0, 100) }}... <br /> 
                     </h5> 
                 </td> 
                 <td> 
