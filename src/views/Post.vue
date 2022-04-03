@@ -38,7 +38,7 @@
                 <td class="contentArtikel"> 
                     <h5>
                     <b>Judul : </b> {{ blog.title }} <br /> 
-                    <b>Deskripsi : </b> {{ blog.description.substring(0, 100) }}... <br /> 
+                    <b>Deskripsi : </b> <span v-text="blog.description.length > 100 ? blog.description.substring(0, 100) + '...' : blog.description"></span> <br /> 
                     </h5> 
                 </td> 
                 <td> 

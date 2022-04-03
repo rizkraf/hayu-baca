@@ -28,7 +28,7 @@
           :key="`blog-` + blog.id" 
           :blog="blog" 
           :caption="blog.title"
-          :text="`${blog.description.substring(0, 100)} ...`"
+          :text="blog.description.length > 100 ? blog.description.substring(0, 100) + '...' : blog.description"
           :img-src="blog.photo ? apiDomain + blog.photo : 'https://picsum.photos/200/300'">
             <router-link :to="'/blog/'+blog.id" custom v-slot="{ navigate }">
               <b-link class="stretched-link" @click="navigate" @keypress.enter="navigate" role="link"></b-link>
